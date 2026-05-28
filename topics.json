@@ -1,0 +1,32 @@
+{
+  "_comment": "Edit this to change what the weekly brief researches. Each entry becomes one last30days query. Keep to 5 topics — more = expensive + noisy. Each topic should be a sharp, specific phrase.",
+  "lookback_days": 7,
+  "depth": "deep",
+  "topics": [
+    {
+      "id": "ai-coding-tools",
+      "query": "new AI coding tools, IDE agents, and developer assistants launched or trending in the last week",
+      "category": "TOOLS"
+    },
+    {
+      "id": "agent-skills",
+      "query": "new open-source Claude skills, agent skills, or Cursor skills published on GitHub in the last week",
+      "category": "SKILLS"
+    },
+    {
+      "id": "ai-agents",
+      "query": "new AI agents, agent frameworks, or notable agent demos released or discussed in the last week",
+      "category": "AGENTS"
+    },
+    {
+      "id": "ai-infra",
+      "query": "new AI infrastructure, model launches, inference tools, or MCP servers worth knowing about this week",
+      "category": "INFRA"
+    },
+    {
+      "id": "ai-vc-studios",
+      "query": "AI strategy moves by VC firms and venture studios, plus notable AI portfolio company news this week",
+      "category": "STUDIO"
+    }
+  ]
+}
