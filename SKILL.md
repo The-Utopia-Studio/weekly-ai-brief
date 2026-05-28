@@ -1,4 +1,4 @@
-# Utopia Weekly AI Brief
+# The Utopia Studio — Weekly AI Brief
 
 Self-contained system that runs `last30days` for 5 curated topics every week, synthesizes the output via xAI Grok, and posts a concise brief to Slack.
 

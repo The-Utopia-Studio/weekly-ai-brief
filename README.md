@@ -1,8 +1,8 @@
-# Utopia Weekly AI Brief
+# The Utopia Studio — Weekly AI Brief
 
 Auto-curated weekly intelligence on new AI tools, open-source skills, and notable agents. Pulled from Reddit, X, Hacker News, YouTube, GitHub trending, TikTok, Instagram, and Polymarket. Posted to Slack every Monday morning.
 
-Built for [Utopia Capital](https://github.com/The-Utopia-Studio) but the whole thing is generic — fork it and change `topics.json` for your own team.
+Built for [The Utopia Studio](https://github.com/The-Utopia-Studio) but the whole thing is generic — fork it and change `topics.json` for your own team.
 
 ---
 
@@ -140,11 +140,11 @@ Cap your xAI spend at [https://console.x.ai/](https://console.x.ai/) to stay saf
 
 ## Why this exists
 
-Karan (GP at Utopia) was getting overwhelmed by the firehose of new AI tools / skills / agents launching every week. Reading every Reddit thread, every X post, every HN front-page submission isn't a viable strategy. But missing the genuinely-useful stuff has real cost — for Utopia's own AI work, for portcos, and for fellows.
+Karan (CGTO at The Utopia Studio) was getting overwhelmed by the firehose of new AI tools / skills / agents launching every week. Reading every Reddit thread, every X post, every HN front-page submission isn't a viable strategy. But missing the genuinely-useful stuff has real cost — for The Utopia Studio's own AI work, for portcos, and for fellows.
 
 This brief is the compromise: spend 30 seconds on Monday morning instead of 30 hours across the week.
 
-The "So what" framing is non-negotiable. A list of new tools without context is just noise. Each item explains why it matters to Utopia specifically.
+The "So what" framing is non-negotiable. A list of new tools without context is just noise. Each item explains why it matters to The Utopia Studio specifically.
 
 ---
 
