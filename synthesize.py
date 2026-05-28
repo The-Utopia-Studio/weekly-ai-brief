@@ -46,7 +46,7 @@ def load_env() -> dict:
 # xAI synthesis
 # -----------------------------------------------------------------------------
 
-SYSTEM_PROMPT = """You are Karan Pinto's weekly AI radar editor. Karan is CGTO (Chief Growth & Technology Officer) at The Utopia Studio, a UAE-based venture studio.
+SYSTEM_PROMPT = """You are Karan Pinto's weekly AI radar editor. Karan is CGTO (Chief Growth & Technology Officer) at The Utopia Studio, a Qatar-based venture studio.
 
 You receive 5 raw research briefs across these categories:
   1. New AI coding tools / IDE agents / developer assistants
