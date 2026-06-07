@@ -61,6 +61,10 @@ echo "Lookback: $LOOKBACK_DAYS days · Depth: $DEPTH · Topics: $TOPIC_COUNT"
 echo ""
 
 # ----- Run last30days for each topic -----
+SUCCEEDED=0
+FAILED=0
+FAILED_TOPIC_IDS=()
+
 for i in $(seq 0 $((TOPIC_COUNT - 1))); do
     TOPIC_ID="$(python3 -c "import json; print(json.load(open('$TOPICS_JSON'))['topics'][$i]['id'])")"
     TOPIC_QUERY="$(python3 -c "import json; print(json.load(open('$TOPICS_JSON'))['topics'][$i]['query'])")"
@@ -83,19 +87,74 @@ for i in $(seq 0 $((TOPIC_COUNT - 1))); do
         > "$OUT_PATH" 2>> "$LOG_FILE"
     then
         echo "✓ Saved $(wc -c < "$OUT_PATH" | tr -d ' ') bytes to $(basename "$OUT_PATH")"
+        SUCCEEDED=$((SUCCEEDED + 1))
     else
         echo "✗ Topic $TOPIC_ID failed — see log. Continuing."
         echo "[Topic query failed — no data]" > "$OUT_PATH"
+        FAILED=$((FAILED + 1))
+        FAILED_TOPIC_IDS+=("$TOPIC_ID")
     fi
     echo ""
 done
+
+echo "Topic results: $SUCCEEDED succeeded, $FAILED failed."
+echo ""
+
+# ----- Failure guard: if every topic failed, post an alert instead of a confusing empty brief -----
+if [ "$SUCCEEDED" -eq 0 ]; then
+    echo "============================================================"
+    echo "All topics failed — posting failure alert instead of brief"
+    echo "============================================================"
+
+    # Pull the first useful error line from the per-run log to surface in Slack.
+    ERROR_HINT="$(grep -m1 -E "Error|error:|Traceback|requires Python|API|401|403|429|fail" "$LOG_FILE" 2>/dev/null | head -1 | sed 's/[<>*_`]//g' | cut -c1-200)"
+    if [ -z "$ERROR_HINT" ]; then
+        ERROR_HINT="(No specific error captured — check the log)"
+    fi
+
+    ALERT_PATH="$RUN_DIR/alert.md"
+    cat > "$ALERT_PATH" <<EOF
+*⚠️ Utopia AI Brief — FAILED for week of $DATE*
+
+All $TOPIC_COUNT topic queries failed. No brief generated.
+
+*Likely cause:*
+\`\`\`
+$ERROR_HINT
+\`\`\`
+
+*Log file:* \`$LOG_FILE\`
+
+*Common fixes:*
+• Python version mismatch (last30days needs 3.12+) — check \`python3 --version\` in this shell
+• ScrapeCreators API key expired or rate-limited
+• xAI API key expired or out of credits
+• last30days skill broken after recent update
+
+After fixing, run manually: \`~/utopia-weekly-brief/run.sh\`
+EOF
+
+    python3 "$BRIEF_DIR/post_to_slack.py" "$ALERT_PATH"
+
+    echo ""
+    echo "============================================================"
+    echo "Done (with failure alert) — $(date)"
+    echo "============================================================"
+    exit 1
+fi
 
 # ----- Synthesize -----
 echo "============================================================"
 echo "Synthesizing brief..."
 echo "============================================================"
+# If some topics failed, tell synthesize.py so it can include a partial-data note.
+PARTIAL_NOTE=""
+if [ "$FAILED" -gt 0 ]; then
+    PARTIAL_NOTE=" (partial: $FAILED of $TOPIC_COUNT topics failed: ${FAILED_TOPIC_IDS[*]})"
+    echo "⚠️  Partial run: $FAILED of $TOPIC_COUNT topics failed: ${FAILED_TOPIC_IDS[*]}"
+fi
 python3 "$BRIEF_DIR/synthesize.py" "$RUN_DIR" > "$RUN_DIR/brief.md"
-echo "✓ Brief synthesized to $RUN_DIR/brief.md"
+echo "✓ Brief synthesized to $RUN_DIR/brief.md$PARTIAL_NOTE"
 echo ""
 
 # ----- Post to Slack -----
