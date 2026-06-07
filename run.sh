@@ -9,6 +9,10 @@
 
 set -euo pipefail
 
+# Cron uses a minimal PATH. Make sure we pick up Homebrew-installed binaries
+# (python3.14, node, gh, jq) instead of macOS system defaults (python3.9).
+export PATH="/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/sbin:$PATH"
+
 BRIEF_DIR="$HOME/utopia-weekly-brief"
 DATE="$(date +%Y-%m-%d)"
 RUN_DIR="$BRIEF_DIR/runs/$DATE"
