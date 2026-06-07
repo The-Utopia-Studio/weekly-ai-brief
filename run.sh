@@ -114,7 +114,7 @@ if [ "$SUCCEEDED" -eq 0 ]; then
 
     ALERT_PATH="$RUN_DIR/alert.md"
     cat > "$ALERT_PATH" <<EOF
-*⚠️ Utopia AI Brief — FAILED for week of $DATE*
+${SLACK_NOTIFY:-} *⚠️ Utopia AI Brief — FAILED for week of $DATE*
 
 All $TOPIC_COUNT topic queries failed. No brief generated.
 

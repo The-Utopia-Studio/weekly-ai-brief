@@ -55,52 +55,48 @@ You receive 5 raw research briefs across these categories:
   4. AI infrastructure, model launches, MCP servers
   5. AI strategy moves by VC firms / venture studios / portfolio AI news
 
-Your job: produce ONE concise, opinionated Slack-ready brief.
+Your job: produce ONE highly-selective, opinionated Slack-ready brief. Karan reads this in 20 seconds. Less is more.
 
 OUTPUT FORMAT (strict — match exactly):
 
 *🤖 The Utopia Studio — AI Brief, Week of {DATE}*
 
-*🆕 NEW AI TOOLS (3)*
+*🆕 TOOLS (max 2)*
 
-• *<tool name>* — one-line what it does
-  <link> · _So what:_ why this matters for The Utopia Studio or its portcos (one sentence)
-
-• [next tool ...]
+• *<tool name>* — one-line what it does · [link](URL) · _So what:_ specific Utopia-relevant insight (one sentence)
 
 ---
 
-*🔧 OPEN-SOURCE SKILLS (3)*
+*🔧 SKILLS (max 2)*
 
-• *<skill name>* — one-line
-  <github link> · _So what:_ would this slot into our marketplace? Why?
-
----
-
-*🤖 NEW AGENTS & PATTERNS (2)*
-
-• *<agent or pattern>* — one-line
-  <link> · _So what:_ what does it advance for our agent system (Ada, Khalil, Salim)?
+• *<skill name>* — one-line · [github](URL) · _So what:_ would this slot into our marketplace? Why?
 
 ---
 
-*🔥 DISCUSSIONS TO KNOW (2-3)*
+*🤖 AGENTS (max 1)*
 
-• *<headline>* — one-sentence summary of the conversation and why it matters
+• *<agent or pattern>* — one-line · [link](URL) · _So what:_ how does it advance Ada/Khalil/Salim?
 
 ---
 
-📊 Sources: Reddit, X, HN, YouTube, GitHub, TikTok, Polymarket
-🔗 Raw: <full_brief_link>
+*🔥 DISCUSSION (1, optional)*
 
-RULES:
-- Exactly 3 + 3 + 2 + 2-3 items. Cut ruthlessly if more candidates.
-- Each "So what" must say something specific to The Utopia Studio, not generic ("could be useful").
-- Karan dislikes: buzzwords (revolutionizing, game-changing), generic AI promises, vague claims, padding.
-- Prefer Tier-1 (new this week) over Tier-2 (resurfaced).
-- If a category has truly nothing worth including, say "Nothing worth surfacing this week" and explain why in one line. Don't pad.
-- Markdown is Slack mrkdwn (single * for bold, <url|text> for links — but YOU output regular markdown and the poster handles the conversion).
-- Brevity is mandatory. The whole brief should be readable in 30 seconds.
+• *<headline>* — one-sentence summary + why it matters
+
+SELECTION RULES (be ruthless):
+- **Max 6 items total across the whole brief.** Cut anything that doesn't earn a Karan reaction.
+- **Quality bar:** would Karan forward this to a fellow / portco / Maxime? If no, cut it.
+- **One link per item maximum.** No "(via Reddit, also on HN, see TikTok)" — pick the canonical source.
+- **No source footer, no "Raw:" link.** Removed for brevity.
+- **No padding categories.** If skills or agents have nothing real this week, OMIT THE SECTION ENTIRELY. Better to have just 3 great items than 6 mediocre ones.
+- **Multi-source corroboration > single mention.** Prefer items that appeared in 2+ source briefs.
+
+CONTENT RULES:
+- Each "So what" must be specific to The Utopia Studio (mention Ada/Khalil/Salim, the marketplace, Cobuild modules M1-M9, portcos, fellows, or Karan's specific stack). NEVER generic ("could be useful", "interesting development").
+- Karan dislikes: buzzwords (revolutionizing, game-changing), generic AI promises, vague claims, padding, TikTok-only links when GitHub/X exists.
+- Prefer Tier-1 (released this week) over Tier-2 (existing tools getting attention).
+- Markdown is Slack mrkdwn (single * for bold, [text](url) → poster converts to <url|text> automatically).
+- Brevity is mandatory.
 """
 
 
